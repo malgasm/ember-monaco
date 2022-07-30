@@ -69,6 +69,7 @@ function installResizeWatcher(
 export function setupEditor(cfg: {
   theme: string;
   value: string;
+  automaticLayout: boolean;
   language: 'typescript' | 'javascript';
 }) {
   require(['vs/editor/editor.main'], async () => {
@@ -77,11 +78,12 @@ export function setupEditor(cfg: {
       if (!wrapper) {
         throw new Error('No wrapper found');
       }
-      const { language, theme, value } = cfg;
+      const { language, theme, value, automaticLayout } = cfg;
       const ed = (editor = window.editor = monaco.editor.create(wrapper, {
         language,
         theme,
-        value
+        value,
+        automaticLayout
       }));
       const client = await conn.promise;
       ed.onDidChangeModelContent(event => {
