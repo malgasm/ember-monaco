@@ -40,11 +40,6 @@ export default class Application extends Controller {
 }}
 ```
 
-**Additional options:**
-
-To create a read-only editor, pass `readOnly=true` to the `code-editor` component.
-`readOnly` defaults to false.
-
 ## Contributing
 
 ### Installation

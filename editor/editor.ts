@@ -70,7 +70,6 @@ export function setupEditor(cfg: {
   theme: string;
   value: string;
   language: 'typescript' | 'javascript';
-  readOnly?: boolean;
 }) {
   require(['vs/editor/editor.main'], async () => {
     if (typeof monaco !== 'undefined') {
@@ -78,12 +77,11 @@ export function setupEditor(cfg: {
       if (!wrapper) {
         throw new Error('No wrapper found');
       }
-      const { language, theme, value, readOnly=false } = cfg;
+      const { language, theme, value } = cfg;
       const ed = (editor = window.editor = monaco.editor.create(wrapper, {
         language,
         theme,
-        value,
-        readOnly
+        value
       }));
       const client = await conn.promise;
       ed.onDidChangeModelContent(event => {

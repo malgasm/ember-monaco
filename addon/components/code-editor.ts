@@ -15,11 +15,9 @@ export default class CodeEditor extends Component {
   public language?: string;
   public _conn!: IChildConnectionObject<any>;
   public theme: 'vs-dark' | 'vs-light' = 'vs-dark'; // TODO: proper default value
-  public readOnly?: boolean;
   public onChange?: (v: string) => any;
   public onKeyCommand?: (evt: CodeEditorKeyCommand) => any;
   public onReady?: (editor: mon.editor.IStandaloneCodeEditor) => any;
-  public automaticLayout?: boolean;
 
   public buildEditorOptions(): object {
     const { code, language, theme } = this;
@@ -69,13 +67,11 @@ export default class CodeEditor extends Component {
       url: '/ember-monaco/frame.html'
     });
     this._conn.promise.then(frameApi => {
-      const { code, theme, language, readOnly } = this;
+      const { code, theme, language } = this;
       frameApi.setupEditor({
         language,
         theme,
-        value: code,
-        readOnly,
-        automaticLayout
+        value: code
       });
     });
   }
