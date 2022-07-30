@@ -83,7 +83,8 @@ export function setupEditor(cfg: {
         language,
         theme,
         value,
-        automaticLayout
+        automaticLayout,
+        scrollBeyondLastLine: false
       }));
       const client = await conn.promise;
       ed.onDidChangeModelContent(event => {
