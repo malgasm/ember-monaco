@@ -19,6 +19,7 @@ export default class CodeEditor extends Component {
   public onChange?: (v: string) => any;
   public onKeyCommand?: (evt: CodeEditorKeyCommand) => any;
   public onReady?: (editor: mon.editor.IStandaloneCodeEditor) => any;
+  public automaticLayout?: boolean;
 
   public buildEditorOptions(): object {
     const { code, language, theme } = this;
@@ -73,7 +74,8 @@ export default class CodeEditor extends Component {
         language,
         theme,
         value: code,
-        readOnly
+        readOnly,
+        automaticLayout
       });
     });
   }
